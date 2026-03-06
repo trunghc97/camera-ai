@@ -2,148 +2,148 @@
   "summary": [
     {
       "model": "Regex",
-      "precision": 0.7494,
-      "recall": 0.4497,
-      "f1": 0.5621
+      "precision": 0.6559,
+      "recall": 0.4972,
+      "f1": 0.5657
     },
     {
       "model": "NER",
-      "precision": 0.9639,
-      "recall": 0.9619,
-      "f1": 0.9629
+      "precision": 0.8988,
+      "recall": 0.8985,
+      "f1": 0.8987
     },
     {
       "model": "Hybrid",
-      "precision": 0.9639,
-      "recall": 0.9619,
-      "f1": 0.9629
+      "precision": 0.8988,
+      "recall": 0.8985,
+      "f1": 0.8987
     }
   ],
   "details": {
     "Regex": {
       "per_entity": {
         "BANK": {
-          "precision": 0.7343,
-          "recall": 0.7343,
-          "f1": 0.7343,
-          "support": 3000
+          "precision": 0.7351,
+          "recall": 0.7351,
+          "f1": 0.7351,
+          "support": 3900
         },
         "ACCOUNT_NUMBER": {
-          "precision": 0.9837,
-          "recall": 0.9837,
-          "f1": 0.9837,
-          "support": 3000
+          "precision": 0.9841,
+          "recall": 0.9841,
+          "f1": 0.9841,
+          "support": 3900
         },
         "ACCOUNT_NAME": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 3000
+          "support": 3900
         },
         "AMOUNT": {
-          "precision": 0.5303,
-          "recall": 0.5303,
-          "f1": 0.5303,
-          "support": 3000
+          "precision": 0.7669,
+          "recall": 0.7669,
+          "f1": 0.7669,
+          "support": 3900
         },
         "DESCRIPTION": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 3000
+          "support": 3900
         }
       },
       "overall": {
-        "precision": 0.7494,
-        "recall": 0.4497,
-        "f1": 0.5621,
-        "tp": 6745,
-        "fp": 2255,
-        "fn": 8255
+        "precision": 0.6559,
+        "recall": 0.4972,
+        "f1": 0.5657,
+        "tp": 9696,
+        "fp": 5086,
+        "fn": 9804
       }
     },
     "NER": {
       "per_entity": {
         "BANK": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 3000
+          "precision": 0.9321,
+          "recall": 0.9321,
+          "f1": 0.9321,
+          "support": 3900
         },
         "ACCOUNT_NUMBER": {
           "precision": 1.0,
           "recall": 1.0,
           "f1": 1.0,
-          "support": 3000
+          "support": 3900
         },
         "ACCOUNT_NAME": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 3000
+          "precision": 0.7287,
+          "recall": 0.7287,
+          "f1": 0.7287,
+          "support": 3900
         },
         "AMOUNT": {
-          "precision": 0.82,
-          "recall": 0.82,
-          "f1": 0.82,
-          "support": 3000
+          "precision": 0.8336,
+          "recall": 0.8336,
+          "f1": 0.8336,
+          "support": 3900
         },
         "DESCRIPTION": {
           "precision": 1.0,
-          "recall": 0.9893,
-          "f1": 0.9946,
-          "support": 3000
+          "recall": 0.9982,
+          "f1": 0.9991,
+          "support": 3900
         }
       },
       "overall": {
-        "precision": 0.9639,
-        "recall": 0.9619,
-        "f1": 0.9629,
-        "tp": 14428,
-        "fp": 540,
-        "fn": 572
+        "precision": 0.8988,
+        "recall": 0.8985,
+        "f1": 0.8987,
+        "tp": 17521,
+        "fp": 1972,
+        "fn": 1979
       }
     },
     "Hybrid": {
       "per_entity": {
         "BANK": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 3000
+          "precision": 0.9321,
+          "recall": 0.9321,
+          "f1": 0.9321,
+          "support": 3900
         },
         "ACCOUNT_NUMBER": {
           "precision": 1.0,
           "recall": 1.0,
           "f1": 1.0,
-          "support": 3000
+          "support": 3900
         },
         "ACCOUNT_NAME": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "support": 3000
+          "precision": 0.7287,
+          "recall": 0.7287,
+          "f1": 0.7287,
+          "support": 3900
         },
         "AMOUNT": {
-          "precision": 0.82,
-          "recall": 0.82,
-          "f1": 0.82,
-          "support": 3000
+          "precision": 0.8336,
+          "recall": 0.8336,
+          "f1": 0.8336,
+          "support": 3900
         },
         "DESCRIPTION": {
           "precision": 1.0,
-          "recall": 0.9893,
-          "f1": 0.9946,
-          "support": 3000
+          "recall": 0.9982,
+          "f1": 0.9991,
+          "support": 3900
         }
       },
       "overall": {
-        "precision": 0.9639,
-        "recall": 0.9619,
-        "f1": 0.9629,
-        "tp": 14428,
-        "fp": 540,
-        "fn": 572
+        "precision": 0.8988,
+        "recall": 0.8985,
+        "f1": 0.8987,
+        "tp": 17521,
+        "fp": 1972,
+        "fn": 1979
       }
     }
   }
