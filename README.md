@@ -16,6 +16,7 @@ Image -> Preprocessing -> OCR -> Layout detection -> NER extraction -> Regex fal
 - Vietnamese dataset generator: `app/dataset/vietnamese_dataset_generator.py`
 - NER training: `app/nlp/train_ner.py`
 - NER evaluation: `app/nlp/evaluate_ner.py`
+- Auto train agent: `app/agent/autotrain_agent.py`
 - Benchmark: `app/evaluation/benchmark.py`
 - Error analysis: `app/evaluation/error_analysis.py`
 - Bank dictionary: `data/banks_vietnam.json`
@@ -56,12 +57,17 @@ docker compose exec app python app/evaluation/benchmark.py
 docker compose exec app python app/evaluation/error_analysis.py
 ```
 
-8. Run API
+8. Run auto-train agent (self-generate dataset, self-train, self-test until target)
+```bash
+docker compose exec app python app/agent/autotrain_agent.py --target-f1 0.92 --max-rounds 6 --base-size 20000 --growth 2000
+```
+
+9. Run API
 ```bash
 docker compose exec app uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-9. Inference test
+10. Inference test
 ```bash
 curl -F "file=@data/images/sample_transfer.jpg" http://localhost:8000/extract
 ```
@@ -73,6 +79,7 @@ python app/nlp/train_ner.py
 python app/nlp/evaluate_ner.py
 python app/evaluation/benchmark.py
 python app/evaluation/error_analysis.py
+python app/agent/autotrain_agent.py --target-f1 0.92 --max-rounds 6 --base-size 20000 --growth 2000
 ```
 
 ## Outputs
@@ -80,6 +87,7 @@ python app/evaluation/error_analysis.py
 - Trained model: `data/models/ner_model`
 - NER evaluation: `data/benchmark/ner_evaluation.json`
 - Benchmark: `data/benchmark/results.json`
+- Auto train report: `data/benchmark/auto_train_report.json`
 - Error report: `data/benchmark/error_report.json`
 
 ## Benchmark Target

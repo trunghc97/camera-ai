@@ -4,6 +4,7 @@ from pathlib import Path
 
 import spacy
 from spacy.training import Example
+from spacy.util import minibatch
 
 DATA_PATH = Path("data/dataset/vietnamese_banking/train.json")
 MODEL_PATH = Path("data/models/ner_model")
@@ -52,11 +53,19 @@ def _build_train_examples(dataset: list[dict]) -> list[tuple[str, dict]]:
     return examples
 
 
-def train_ner(dataset_path: str = DATA_PATH.as_posix(), model_path: str = MODEL_PATH.as_posix(), n_iter: int = 15):
+def train_ner(
+    dataset_path: str = DATA_PATH.as_posix(),
+    model_path: str = MODEL_PATH.as_posix(),
+    n_iter: int = 15,
+    dropout: float = 0.2,
+    batch_size: int = 16,
+    seed: int = 42,
+):
     path = Path(dataset_path)
     if not path.exists():
         raise FileNotFoundError(f"Dataset not found: {path}")
 
+    random.seed(seed)
     dataset = json.loads(path.read_text(encoding="utf-8"))
     train_data = _build_train_examples(dataset)
     if not train_data:
@@ -72,9 +81,9 @@ def train_ner(dataset_path: str = DATA_PATH.as_posix(), model_path: str = MODEL_
     for i in range(n_iter):
         random.shuffle(train_data)
         losses = {}
-        for text, annotations in train_data:
-            example = Example.from_dict(nlp.make_doc(text), annotations)
-            nlp.update([example], drop=0.2, sgd=optimizer, losses=losses)
+        for batch in minibatch(train_data, size=max(1, batch_size)):
+            examples = [Example.from_dict(nlp.make_doc(text), annotations) for text, annotations in batch]
+            nlp.update(examples, drop=dropout, sgd=optimizer, losses=losses)
         print(f"Iteration {i + 1}/{n_iter} - losses: {losses}")
 
     out = Path(model_path)

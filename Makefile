@@ -1,4 +1,4 @@
-.PHONY: build up down dataset dataset-vn train eval benchmark error-report test run infer logs
+.PHONY: build up down dataset dataset-vn train eval benchmark error-report test run infer logs auto-train
 
 build:
 	docker compose build
@@ -38,3 +38,6 @@ infer:
 
 logs:
 	docker compose logs -f app
+
+auto-train:
+	docker compose exec app python app/agent/autotrain_agent.py --target-f1 0.92 --max-rounds 6 --base-size 20000 --growth 2000

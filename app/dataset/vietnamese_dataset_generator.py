@@ -32,6 +32,15 @@ DESCRIPTIONS = [
 ]
 
 STYLES = ["chat", "invoice", "request", "mixed"]
+DOCUMENT_TYPES = ["invoice", "debt", "text", "qr", "document"]
+
+DEBT_TERMS = [
+    "cong no ky truoc",
+    "thanh toan cong no don hang",
+    "doi soat cong no",
+    "thu hoi cong no",
+    "hoan ung cong no",
+]
 
 
 def _load_banks() -> list[str]:
@@ -99,6 +108,63 @@ def _compose_sentence(style: str, amount_text: str, account: str, bank: str, nam
     )
 
 
+def _compose_document(
+    doc_type: str,
+    amount_text: str,
+    account: str,
+    bank: str,
+    name: str,
+    description: str,
+) -> str:
+    if doc_type == "invoice":
+        return (
+            "HOA DON THANH TOAN\n"
+            f"So tien can chuyen: {amount_text}\n"
+            f"Ngan hang huong thu: {bank}\n"
+            f"So tai khoan: {account}\n"
+            f"Chu tai khoan: {name}\n"
+            f"Noi dung chuyen khoan: {description}"
+        )
+
+    if doc_type == "debt":
+        debt_term = random.choice(DEBT_TERMS)
+        return (
+            "BIEN BAN DOI SOAT CONG NO\n"
+            f"Khoan muc: {debt_term}\n"
+            f"So tien thanh toan: {amount_text}\n"
+            f"Thong tin nhan tien: {bank} - {account}\n"
+            f"Ten nguoi nhan: {name}\n"
+            f"Dien giai: {description}"
+        )
+
+    if doc_type == "qr":
+        return (
+            "THANH TOAN QR\n"
+            f"payload=bank:{bank};acc:{account};name:{name};amount:{amount_text};desc:{description}\n"
+            f"Quet ma QR va chuyen {amount_text}"
+        )
+
+    if doc_type == "document":
+        return (
+            "DE NGHI THANH TOAN CHUYEN KHOAN\n"
+            "Kinh gui phong ke toan,\n"
+            f"Vui long chuyen khoan so tien {amount_text} vao tai khoan {account} tai {bank}.\n"
+            f"Nguoi thu huong: {name}.\n"
+            f"Noi dung: {description}.\n"
+            "Tran trong."
+        )
+
+    # text: generic free-form style.
+    return _compose_sentence(
+        style=random.choice(STYLES),
+        amount_text=amount_text,
+        account=account,
+        bank=bank,
+        name=name,
+        description=description,
+    )
+
+
 def _find_span(text: str, value: str) -> tuple[int, int]:
     start = text.lower().find(value.lower())
     if start < 0:
@@ -106,7 +172,22 @@ def _find_span(text: str, value: str) -> tuple[int, int]:
     return start, start + len(value)
 
 
-def generate_record(banks: list[str]) -> dict:
+def _label_noise(text: str) -> str:
+    replacements = {
+        "so tai khoan": "stk",
+        "ngan hang": random.choice(["ngan hang", "bank", "n.hang"]),
+        "chu tai khoan": random.choice(["chu tk", "ten tk", "account name"]),
+        "noi dung chuyen khoan": random.choice(["noi dung", "note", "description"]),
+        "so tien": random.choice(["so tien", "amount", "tong tien"]),
+    }
+    noisy = text
+    for src, dst in replacements.items():
+        if random.random() < 0.35:
+            noisy = noisy.replace(src, dst).replace(src.title(), dst)
+    return noisy
+
+
+def generate_record(banks: list[str], document_type: str | None = None) -> dict:
     style = random.choice(STYLES)
     bank = random.choice(banks)
     account = _account_number()
@@ -115,7 +196,16 @@ def generate_record(banks: list[str]) -> dict:
     name = random.choice(NAMES)
     description = random.choice(DESCRIPTIONS)
 
-    text = _compose_sentence(style, amount_text, account, bank, name, description)
+    doc_type = document_type or random.choice(DOCUMENT_TYPES)
+    text = _compose_document(
+        doc_type=doc_type,
+        amount_text=amount_text,
+        account=account,
+        bank=bank,
+        name=name,
+        description=description,
+    )
+    text = _label_noise(text)
 
     entities = []
     for label, value in [
@@ -128,7 +218,7 @@ def generate_record(banks: list[str]) -> dict:
         start, end = _find_span(text, value)
         entities.append({"label": label, "start": start, "end": end})
 
-    return {"text": text, "entities": entities}
+    return {"text": text, "entities": entities, "document_type": doc_type}
 
 
 def _split_dataset(records: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
@@ -142,10 +232,21 @@ def generate_vietnamese_dataset(
     size: int = 20_000,
     seed: int = 42,
     output_dir: str = OUTPUT_DIR.as_posix(),
+    enforce_doc_balance: bool = True,
 ) -> dict[str, int]:
     random.seed(seed)
     banks = _load_banks()
-    records = [generate_record(banks) for _ in range(size)]
+
+    records: list[dict] = []
+    if enforce_doc_balance and size >= len(DOCUMENT_TYPES):
+        per_type = size // len(DOCUMENT_TYPES)
+        for doc_type in DOCUMENT_TYPES:
+            records.extend(generate_record(banks, document_type=doc_type) for _ in range(per_type))
+        while len(records) < size:
+            records.append(generate_record(banks))
+    else:
+        records = [generate_record(banks) for _ in range(size)]
+
     random.shuffle(records)
 
     train, val, test = _split_dataset(records)
