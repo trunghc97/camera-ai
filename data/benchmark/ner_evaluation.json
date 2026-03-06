@@ -1,0 +1,42 @@
+{
+  "per_entity": {
+    "BANK": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3000
+    },
+    "ACCOUNT_NUMBER": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3000
+    },
+    "ACCOUNT_NAME": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3000
+    },
+    "AMOUNT": {
+      "precision": 0.82,
+      "recall": 0.82,
+      "f1": 0.82,
+      "support": 3000
+    },
+    "DESCRIPTION": {
+      "precision": 1.0,
+      "recall": 0.9893,
+      "f1": 0.9946,
+      "support": 3000
+    }
+  },
+  "overall": {
+    "precision": 0.9639,
+    "recall": 0.9619,
+    "f1": 0.9629,
+    "tp": 14428,
+    "fp": 540,
+    "fn": 572
+  }
+}

@@ -1,0 +1,693 @@
+{
+  "issue_counts": {
+    "incorrect_amount_detection": 540,
+    "missing_description": 32
+  },
+  "sample_count": 3000,
+  "examples": {
+    "incorrect_amount_detection": [
+      {
+        "text": "chuyen gap 59399k qua AGRIBANK 21376499095987 cho Pham Gia Huy phi dich vu",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "21376499095987",
+          "ACCOUNT_NAME": "Pham Gia Huy",
+          "AMOUNT": "59399k",
+          "DESCRIPTION": "phi dich vu"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "21376499095987",
+          "ACCOUNT_NAME": "PHAM GIA HUY",
+          "AMOUNT": 59399,
+          "DESCRIPTION": "phi dich vu"
+        }
+      },
+      {
+        "text": "ck 67099k den tk 68751311282994 OCB Hoang Anh Tuan thanh toan hoa don",
+        "gold": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "68751311282994",
+          "ACCOUNT_NAME": "Hoang Anh Tuan",
+          "AMOUNT": "67099k",
+          "DESCRIPTION": "thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "68751311282994",
+          "ACCOUNT_NAME": "HOANG ANH TUAN",
+          "AMOUNT": 67099,
+          "DESCRIPTION": "thanh toan hoa don"
+        }
+      },
+      {
+        "text": "Chuyen 13 tr vao stk 54015646 OCB Le Minh C ho tro gia dinh",
+        "gold": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "54015646",
+          "ACCOUNT_NAME": "Le Minh C",
+          "AMOUNT": "13 tr",
+          "DESCRIPTION": "ho tro gia dinh"
+        },
+        "pred": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "54015646",
+          "ACCOUNT_NAME": "LE MINH C",
+          "AMOUNT": 13,
+          "DESCRIPTION": "ho tro gia dinh"
+        }
+      },
+      {
+        "text": "ck 3914k den tk 23643984 MB Hoang Anh Tuan payment invoice 2026",
+        "gold": {
+          "BANK": "MB",
+          "ACCOUNT_NUMBER": "23643984",
+          "ACCOUNT_NAME": "Hoang Anh Tuan",
+          "AMOUNT": "3914k",
+          "DESCRIPTION": "payment invoice 2026"
+        },
+        "pred": {
+          "BANK": "MB",
+          "ACCOUNT_NUMBER": "23643984",
+          "ACCOUNT_NAME": "HOANG ANH TUAN",
+          "AMOUNT": 3914,
+          "DESCRIPTION": "payment invoice 2026"
+        }
+      },
+      {
+        "text": "chuyen gap 10429k qua VPBANK 59288499278054 cho Dinh Thi Mai payment invoice 2026",
+        "gold": {
+          "BANK": "VPBANK",
+          "ACCOUNT_NUMBER": "59288499278054",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "10429k",
+          "DESCRIPTION": "payment invoice 2026"
+        },
+        "pred": {
+          "BANK": "VPBANK",
+          "ACCOUNT_NUMBER": "59288499278054",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 10429,
+          "DESCRIPTION": "payment invoice 2026"
+        }
+      },
+      {
+        "text": "chuyen gap 21 tr qua TPBANK 0283648944511 cho Vo Quoc Bao chuyen tien mua may",
+        "gold": {
+          "BANK": "TPBANK",
+          "ACCOUNT_NUMBER": "0283648944511",
+          "ACCOUNT_NAME": "Vo Quoc Bao",
+          "AMOUNT": "21 tr",
+          "DESCRIPTION": "chuyen tien mua may"
+        },
+        "pred": {
+          "BANK": "TPBANK",
+          "ACCOUNT_NUMBER": "0283648944511",
+          "ACCOUNT_NAME": "VO QUOC BAO",
+          "AMOUNT": 21,
+          "DESCRIPTION": "chuyen tien mua may"
+        }
+      },
+      {
+        "text": "chuyen gap 28489k qua SCB 873198353939 cho Dinh Thi Mai thanh toan hoa don",
+        "gold": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "873198353939",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "28489k",
+          "DESCRIPTION": "thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "873198353939",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 28489,
+          "DESCRIPTION": "thanh toan hoa don"
+        }
+      },
+      {
+        "text": "chuyen gap 24531k qua VIB 345347720 cho Bui Khanh Linh ho tro gia dinh",
+        "gold": {
+          "BANK": "VIB",
+          "ACCOUNT_NUMBER": "345347720",
+          "ACCOUNT_NAME": "Bui Khanh Linh",
+          "AMOUNT": "24531k",
+          "DESCRIPTION": "ho tro gia dinh"
+        },
+        "pred": {
+          "BANK": "VIB",
+          "ACCOUNT_NUMBER": "345347720",
+          "ACCOUNT_NAME": "BUI KHANH LINH",
+          "AMOUNT": 24531,
+          "DESCRIPTION": "ho tro gia dinh"
+        }
+      },
+      {
+        "text": "Chuyen 23 tr vao stk 271582832445 AGRIBANK Doan Thu Trang ho tro gia dinh",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "271582832445",
+          "ACCOUNT_NAME": "Doan Thu Trang",
+          "AMOUNT": "23 tr",
+          "DESCRIPTION": "ho tro gia dinh"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "271582832445",
+          "ACCOUNT_NAME": "DOAN THU TRANG",
+          "AMOUNT": 23,
+          "DESCRIPTION": "ho tro gia dinh"
+        }
+      },
+      {
+        "text": "ck 78 tr den tk 45348827485846 SEABANK Nguyen Hoang Nam tra no tien hang",
+        "gold": {
+          "BANK": "SEABANK",
+          "ACCOUNT_NUMBER": "45348827485846",
+          "ACCOUNT_NAME": "Nguyen Hoang Nam",
+          "AMOUNT": "78 tr",
+          "DESCRIPTION": "tra no tien hang"
+        },
+        "pred": {
+          "BANK": "SEABANK",
+          "ACCOUNT_NUMBER": "45348827485846",
+          "ACCOUNT_NAME": "NGUYEN HOANG NAM",
+          "AMOUNT": 78,
+          "DESCRIPTION": "tra no tien hang"
+        }
+      },
+      {
+        "text": "Chuyen 23502k vao stk 514202425 OCB Tran Thi B phi dich vu",
+        "gold": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "514202425",
+          "ACCOUNT_NAME": "Tran Thi B",
+          "AMOUNT": "23502k",
+          "DESCRIPTION": "phi dich vu"
+        },
+        "pred": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "514202425",
+          "ACCOUNT_NAME": "TRAN THI B",
+          "AMOUNT": 23502,
+          "DESCRIPTION": "phi dich vu"
+        }
+      },
+      {
+        "text": "chuyen gap 54860k qua TPBANK 583017108117 cho Doan Thu Trang chuyen tien mua may",
+        "gold": {
+          "BANK": "TPBANK",
+          "ACCOUNT_NUMBER": "583017108117",
+          "ACCOUNT_NAME": "Doan Thu Trang",
+          "AMOUNT": "54860k",
+          "DESCRIPTION": "chuyen tien mua may"
+        },
+        "pred": {
+          "BANK": "TPBANK",
+          "ACCOUNT_NUMBER": "583017108117",
+          "ACCOUNT_NAME": "DOAN THU TRANG",
+          "AMOUNT": 54860,
+          "DESCRIPTION": "chuyen tien mua may"
+        }
+      },
+      {
+        "text": "ck 34 tr den tk 39773907925412 OCB Hoang Anh Tuan ho tro gia dinh",
+        "gold": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "39773907925412",
+          "ACCOUNT_NAME": "Hoang Anh Tuan",
+          "AMOUNT": "34 tr",
+          "DESCRIPTION": "ho tro gia dinh"
+        },
+        "pred": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "39773907925412",
+          "ACCOUNT_NAME": "HOANG ANH TUAN",
+          "AMOUNT": 34,
+          "DESCRIPTION": "ho tro gia dinh"
+        }
+      },
+      {
+        "text": "chuyen gap 21604k qua TPBANK 139358991 cho Hoang Anh Tuan chuyen tien mua may",
+        "gold": {
+          "BANK": "TPBANK",
+          "ACCOUNT_NUMBER": "139358991",
+          "ACCOUNT_NAME": "Hoang Anh Tuan",
+          "AMOUNT": "21604k",
+          "DESCRIPTION": "chuyen tien mua may"
+        },
+        "pred": {
+          "BANK": "TPBANK",
+          "ACCOUNT_NUMBER": "139358991",
+          "ACCOUNT_NAME": "HOANG ANH TUAN",
+          "AMOUNT": 21604,
+          "DESCRIPTION": "chuyen tien mua may"
+        }
+      },
+      {
+        "text": "ck 25 tr den tk 78829405 BIDV Vo Quoc Bao rent payment",
+        "gold": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "78829405",
+          "ACCOUNT_NAME": "Vo Quoc Bao",
+          "AMOUNT": "25 tr",
+          "DESCRIPTION": "rent payment"
+        },
+        "pred": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "78829405",
+          "ACCOUNT_NAME": "VO QUOC BAO",
+          "AMOUNT": 25,
+          "DESCRIPTION": "rent payment"
+        }
+      },
+      {
+        "text": "ck 21985k den tk 1958710697 SCB Pham Gia Huy payment invoice 2026",
+        "gold": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "1958710697",
+          "ACCOUNT_NAME": "Pham Gia Huy",
+          "AMOUNT": "21985k",
+          "DESCRIPTION": "payment invoice 2026"
+        },
+        "pred": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "1958710697",
+          "ACCOUNT_NAME": "PHAM GIA HUY",
+          "AMOUNT": 21985,
+          "DESCRIPTION": "payment invoice 2026"
+        }
+      },
+      {
+        "text": "chuyen gap 85725k qua MB 8270943324 cho Le Minh C dat coc don hang",
+        "gold": {
+          "BANK": "MB",
+          "ACCOUNT_NUMBER": "8270943324",
+          "ACCOUNT_NAME": "Le Minh C",
+          "AMOUNT": "85725k",
+          "DESCRIPTION": "dat coc don hang"
+        },
+        "pred": {
+          "BANK": "MB",
+          "ACCOUNT_NUMBER": "8270943324",
+          "ACCOUNT_NAME": "LE MINH C",
+          "AMOUNT": 85725,
+          "DESCRIPTION": "dat coc don hang"
+        }
+      },
+      {
+        "text": "chuyen gap 24462k qua VPBANK 8320639667 cho Le Minh C refund order",
+        "gold": {
+          "BANK": "VPBANK",
+          "ACCOUNT_NUMBER": "8320639667",
+          "ACCOUNT_NAME": "Le Minh C",
+          "AMOUNT": "24462k",
+          "DESCRIPTION": "refund order"
+        },
+        "pred": {
+          "BANK": "VPBANK",
+          "ACCOUNT_NUMBER": "8320639667",
+          "ACCOUNT_NAME": "LE MINH C",
+          "AMOUNT": 24462,
+          "DESCRIPTION": "refund order"
+        }
+      },
+      {
+        "text": "ck 47 tr den tk 2697722673 BIDV Dinh Thi Mai phi dich vu",
+        "gold": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "2697722673",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "47 tr",
+          "DESCRIPTION": "phi dich vu"
+        },
+        "pred": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "2697722673",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 47,
+          "DESCRIPTION": "phi dich vu"
+        }
+      },
+      {
+        "text": "Chuyen 34 tr vao stk 6999729474 VIETCOMBANK Pham Gia Huy phi dich vu",
+        "gold": {
+          "BANK": "VIETCOMBANK",
+          "ACCOUNT_NUMBER": "6999729474",
+          "ACCOUNT_NAME": "Pham Gia Huy",
+          "AMOUNT": "34 tr",
+          "DESCRIPTION": "phi dich vu"
+        },
+        "pred": {
+          "BANK": "VIETCOMBANK",
+          "ACCOUNT_NUMBER": "6999729474",
+          "ACCOUNT_NAME": "PHAM GIA HUY",
+          "AMOUNT": 34,
+          "DESCRIPTION": "phi dich vu"
+        }
+      }
+    ],
+    "missing_description": [
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 81.985.977. Ngan hang: VPBANK. So TK: 72885154681. Ten TK: Doan Thu Trang",
+        "gold": {
+          "BANK": "VPBANK",
+          "ACCOUNT_NUMBER": "72885154681",
+          "ACCOUNT_NAME": "Doan Thu Trang",
+          "AMOUNT": "81.985.977",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "VPBANK",
+          "ACCOUNT_NUMBER": "72885154681",
+          "ACCOUNT_NAME": "DOAN THU TRANG",
+          "AMOUNT": 81985977,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 86.262.443. Ngan hang: SEABANK. So TK: 20007130011035. Ten TK: Le Minh C",
+        "gold": {
+          "BANK": "SEABANK",
+          "ACCOUNT_NUMBER": "20007130011035",
+          "ACCOUNT_NAME": "Le Minh C",
+          "AMOUNT": "86.262.443",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SEABANK",
+          "ACCOUNT_NUMBER": "20007130011035",
+          "ACCOUNT_NAME": "LE MINH C",
+          "AMOUNT": 86262443,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 53.540.965. Ngan hang: AGRIBANK. So TK: 40949856. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "40949856",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "53.540.965",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "40949856",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 53540965,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 59.337.043. Ngan hang: SHB. So TK: 659460208. Ten TK: Nguyen Van A",
+        "gold": {
+          "BANK": "SHB",
+          "ACCOUNT_NUMBER": "659460208",
+          "ACCOUNT_NAME": "Nguyen Van A",
+          "AMOUNT": "59.337.043",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SHB",
+          "ACCOUNT_NUMBER": "659460208",
+          "ACCOUNT_NAME": "NGUYEN VAN A",
+          "AMOUNT": 59337043,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 51.310.508. Ngan hang: AGRIBANK. So TK: 642001563. Ten TK: Doan Thu Trang",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "642001563",
+          "ACCOUNT_NAME": "Doan Thu Trang",
+          "AMOUNT": "51.310.508",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "642001563",
+          "ACCOUNT_NAME": "DOAN THU TRANG",
+          "AMOUNT": 51310508,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 22.610.859. Ngan hang: SCB. So TK: 46926016150840. Ten TK: Nguyen Van A",
+        "gold": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "46926016150840",
+          "ACCOUNT_NAME": "Nguyen Van A",
+          "AMOUNT": "22.610.859",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "46926016150840",
+          "ACCOUNT_NAME": "NGUYEN VAN A",
+          "AMOUNT": 22610859,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 44.547.593. Ngan hang: AGRIBANK. So TK: 64734921511653. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "64734921511653",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "44.547.593",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "64734921511653",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 44547593,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 30.358.719. Ngan hang: SHB. So TK: 8521112755. Ten TK: Doan Thu Trang",
+        "gold": {
+          "BANK": "SHB",
+          "ACCOUNT_NUMBER": "8521112755",
+          "ACCOUNT_NAME": "Doan Thu Trang",
+          "AMOUNT": "30.358.719",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SHB",
+          "ACCOUNT_NUMBER": "8521112755",
+          "ACCOUNT_NAME": "DOAN THU TRANG",
+          "AMOUNT": 30358719,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 55.870.156. Ngan hang: BIDV. So TK: 00726677. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "00726677",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "55.870.156",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "00726677",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 55870156,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 27.173.280. Ngan hang: TECHCOMBANK. So TK: 89266453866. Ten TK: Tran Thi B",
+        "gold": {
+          "BANK": "TECHCOMBANK",
+          "ACCOUNT_NUMBER": "89266453866",
+          "ACCOUNT_NAME": "Tran Thi B",
+          "AMOUNT": "27.173.280",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "TECHCOMBANK",
+          "ACCOUNT_NUMBER": "89266453866",
+          "ACCOUNT_NAME": "TRAN THI B",
+          "AMOUNT": 27173280,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 4.742.877. Ngan hang: OCB. So TK: 98432697. Ten TK: Nguyen Hoang Nam",
+        "gold": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "98432697",
+          "ACCOUNT_NAME": "Nguyen Hoang Nam",
+          "AMOUNT": "4.742.877",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "OCB",
+          "ACCOUNT_NUMBER": "98432697",
+          "ACCOUNT_NAME": "NGUYEN HOANG NAM",
+          "AMOUNT": 4742877,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 84.654.595. Ngan hang: SACOMBANK. So TK: 04738653008591. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "SACOMBANK",
+          "ACCOUNT_NUMBER": "04738653008591",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "84.654.595",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SACOMBANK",
+          "ACCOUNT_NUMBER": "04738653008591",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 84654595,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 64.630.365. Ngan hang: TECHCOMBANK. So TK: 76612102469545. Ten TK: Le Minh C",
+        "gold": {
+          "BANK": "TECHCOMBANK",
+          "ACCOUNT_NUMBER": "76612102469545",
+          "ACCOUNT_NAME": "Le Minh C",
+          "AMOUNT": "64.630.365",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "TECHCOMBANK",
+          "ACCOUNT_NUMBER": "76612102469545",
+          "ACCOUNT_NAME": "LE MINH C",
+          "AMOUNT": 64630365,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 30.180.153. Ngan hang: BIDV. So TK: 687141898. Ten TK: Nguyen Van A",
+        "gold": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "687141898",
+          "ACCOUNT_NAME": "Nguyen Van A",
+          "AMOUNT": "30.180.153",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "BIDV",
+          "ACCOUNT_NUMBER": "687141898",
+          "ACCOUNT_NAME": "NGUYEN VAN A",
+          "AMOUNT": 30180153,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 29.753.484. Ngan hang: MB. So TK: 00518332749434. Ten TK: Bui Khanh Linh",
+        "gold": {
+          "BANK": "MB",
+          "ACCOUNT_NUMBER": "00518332749434",
+          "ACCOUNT_NAME": "Bui Khanh Linh",
+          "AMOUNT": "29.753.484",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "MB",
+          "ACCOUNT_NUMBER": "00518332749434",
+          "ACCOUNT_NAME": "BUI KHANH LINH",
+          "AMOUNT": 29753484,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 86.185.050. Ngan hang: MB BANK. So TK: 0779638718427. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "MB BANK",
+          "ACCOUNT_NUMBER": "0779638718427",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "86.185.050",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "MB BANK",
+          "ACCOUNT_NUMBER": "0779638718427",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 86185050,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 58.472.551. Ngan hang: AGRIBANK. So TK: 8387069552974. Ten TK: Doan Thu Trang",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "8387069552974",
+          "ACCOUNT_NAME": "Doan Thu Trang",
+          "AMOUNT": "58.472.551",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "8387069552974",
+          "ACCOUNT_NAME": "DOAN THU TRANG",
+          "AMOUNT": 58472551,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 74.463.956. Ngan hang: MB BANK. So TK: 737565072. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "MB BANK",
+          "ACCOUNT_NUMBER": "737565072",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "74.463.956",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "MB BANK",
+          "ACCOUNT_NUMBER": "737565072",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 74463956,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 50.453.130. Ngan hang: SCB. So TK: 305409733. Ten TK: Dinh Thi Mai",
+        "gold": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "305409733",
+          "ACCOUNT_NAME": "Dinh Thi Mai",
+          "AMOUNT": "50.453.130",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "SCB",
+          "ACCOUNT_NUMBER": "305409733",
+          "ACCOUNT_NAME": "DINH THI MAI",
+          "AMOUNT": 50453130,
+          "DESCRIPTION": null
+        }
+      },
+      {
+        "text": "Thanh toan hoa don: thanh toan hoa don. So tien: 41.972.786. Ngan hang: AGRIBANK. So TK: 61629191300. Ten TK: Bui Khanh Linh",
+        "gold": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "61629191300",
+          "ACCOUNT_NAME": "Bui Khanh Linh",
+          "AMOUNT": "41.972.786",
+          "DESCRIPTION": "Thanh toan hoa don"
+        },
+        "pred": {
+          "BANK": "AGRIBANK",
+          "ACCOUNT_NUMBER": "61629191300",
+          "ACCOUNT_NAME": "BUI KHANH LINH",
+          "AMOUNT": 41972786,
+          "DESCRIPTION": null
+        }
+      }
+    ]
+  }
+}

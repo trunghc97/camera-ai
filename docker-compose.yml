@@ -1,0 +1,52 @@
+services:
+  app:
+    build: .
+    container_name: camera-ai-app
+    working_dir: /app
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/camera_ai
+      IMAGE_DIR: data/images
+      LOG_LEVEL: INFO
+      NER_MODEL_PATH: data/models/ner_model
+      LAYOUT_MODEL_NAME: microsoft/layoutlmv3-base
+    volumes:
+      - ./data:/app/data
+      - ./:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - minio
+
+  postgres:
+    image: postgres:15
+    container_name: camera-ai-postgres
+    environment:
+      POSTGRES_DB: camera_ai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d camera_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  minio:
+    image: minio/minio
+    container_name: camera-ai-minio
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    ports:
+      - "9000:9000"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  postgres_data:
+  minio_data:
